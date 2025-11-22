@@ -50,7 +50,7 @@ const xxx = async () => {
     .toBuffer();
   return resized.toString("base64");
 };
-async function delayJembuttku(sock, target) {
+async function delayJembuttkulebat(sock, target) {
   try {
     const n = await sock.relayMessage(
       target,
