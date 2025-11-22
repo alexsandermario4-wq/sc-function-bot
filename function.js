@@ -528,4 +528,4 @@ async function threepelDelayInvis(sock, target) {
   }
 }
 
-module.exports = { blankButton, Blank2, crsA, bClck, invisibleDozer, delayJembut, threepelDelayInvis }
+module.exports = { blankButton, Blank2, crsA, bClck, invisibleDozer, delayJembut, threepelDelayInvis, AmpasCuih }
