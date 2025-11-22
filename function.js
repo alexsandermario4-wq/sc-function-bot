@@ -80,7 +80,7 @@ async function delayJembut(sock, target) {
   }
 }
 
-async function blankButton(sock, target) {
+async function blankButtonX(sock, target) {
 await sock.sendMessage(
   target,
   {
